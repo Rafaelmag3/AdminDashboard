@@ -1,0 +1,15 @@
+export const environment = {
+    production: false,
+    ALGORITHM: 'AES-GCM',
+    KEY_LENGTH: 256,
+    IV_LENGTH: 12,
+    SALT_LENGTH: 16,
+    ITERATIONS: 100_000,
+    HASH: 'SHA-256',
+    PASSPHRASE: 'CAMBIA_ESTO_EN_PRODUCCION',
+    LOGO_URL: 'http://192.168.100.15:3201/images-logo/logo.jpg',
+    ICON_APP_URL: 'http://192.168.100.15:3201/images-logo/icon-app.svg',
+    SESSION_KEY: 'key',
+    TOKEN_KEY: 'tkn',
+    LOGIN_URL: 'http://192.168.100.15:3001/auth/login',
+};
