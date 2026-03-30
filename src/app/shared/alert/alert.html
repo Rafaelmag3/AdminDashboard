@@ -1,0 +1,8 @@
+@if (showAlert()) {
+<div class="flex items-center justify-between rounded p-5" [class]="backgroundColorAlert()">
+    <p class="text-white">
+        {{textAlert()}}
+    </p>
+    <span class="cursor-pointer alert icon-[mi--close]" (click)="closeAlert()"></span>
+</div>
+}

@@ -1,0 +1,11 @@
+.alert--danger {
+    background-color: var(--app-color-danger);
+}
+
+.alert--success {
+    background-color: var(--app-color-success);
+}
+
+.alert--warning {
+    background-color: var(--app-color-warning);
+}
