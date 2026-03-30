@@ -1,0 +1,28 @@
+<div>
+    <div class="flex flex-col md:flex-row md:gap-8 h-screen">
+        <div class="flex flex-col gap-4 md:gap-0 w-full md:w-2/5 p-2 md:p-8">
+            <div class="header">
+                <img src="{{ iconApp }}" alt="Icon App" class="w-8 h-8" />
+                <h2 class="header--title">
+                    Revolutie
+                </h2>
+            </div>
+            <div class="sm:p-0 lg:px-16 h-full flex flex-col justify-center">
+                <div class="flex flex-col gap-2 md:gap-8">
+                    <div class="flex flex-col form--header">
+                        <h1 class="form--title font-bold">
+                            Sing up
+                        </h1>
+                        <p class="form--description">
+                            Sign up to enjoy the feature of Revolutie
+                        </p>
+                    </div>
+                    <login-form />
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-full md:w-3/5 p-2">
+            <img [src]="logoImage" alt="logo" class="w-full h-full object-cover rounded-3xl" />
+        </div>
+    </div>
+</div>
