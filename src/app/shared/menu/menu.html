@@ -1,51 +1,56 @@
-<div class="p-4">
+<div>
     <mat-drawer-container class="h-dvh" [hasBackdrop]="false">
         <mat-drawer #drawer [mode]="'side'" [opened]="isOpenSlideMenu()">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center gap-3 font-bold text-2xl">
-                    <img [src]="iconApp" alt="icon app" class="w-8 h-8">
-                    <h1> {{ titleApp }} </h1>
+            <div class="bg-gray-100 h-dvh p-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3 font-bold text-2xl">
+                        <img [src]="iconApp" alt="icon app" class="w-8 h-8">
+                        <h1> {{ titleApp }} </h1>
+                    </div>
+                    <button (click)="toggleMenu()" class="cursor-pointer p-2">
+                        <span class="w-8 h-8 icon-[material-symbols--close-rounded]"></span>
+                    </button>
                 </div>
-                <button (click)="toggleMenu()" class="cursor-pointer p-2">
-                    <span class="w-8 h-8 icon-[material-symbols--close-rounded]"></span>
-                </button>
-            </div>
-            @for (item of menuItems(); track $index) {
-            <div class="flex justify-between items-center p-2 cursor-pointer hover:bg-gray-200"
-                [class.bg-gray-200]="isActive(item.route)" [class.font-semibold]="isActive(item.route)"
-                (click)="toggleSubMenu($index, item)">
-                <div class="flex items-center gap-1">
-                    <span class="w-4 h-4" [class]="item.icon"></span>
-                    {{ item.name }}
+                @for (item of menuItems(); track $index) {
+                <div class="flex justify-between items-center p-2 cursor-pointer hover:bg-gray-200"
+                    [class.bg-gray-200]="isActive(item.route)" [class.font-semibold]="isActive(item.route)"
+                    (click)="toggleSubMenu($index, item)">
+                    <div class="flex items-center gap-1">
+                        <span class="w-4 h-4" [class]="item.icon"></span>
+                        {{ item.name }}
+                    </div>
+                    @if (item.subMenu) {
+                    <span [class]="openSubMenuIndex() === $index ? ICONS.UP_ARROW : ICONS.DOWN_ARROW"
+                        class="ml-1"></span>
+                    }
                 </div>
-                @if (item.subMenu) {
-                <span [class]="openSubMenuIndex() === $index ? ICONS.UP_ARROW : ICONS.DOWN_ARROW" class="ml-1"></span>
+
+                @if (item.subMenu && openSubMenuIndex() === $index) {
+                @for (subItem of item.subMenu; track $index) {
+                <div class="pl-3 p-2 cursor-pointer hover:bg-gray-200" (click)="navigateChild(subItem)"
+                    [class.bg-gray-200]="isChildActive(subItem.route)">
+                    {{ subItem.name }}
+                </div>
+                }
+                }
                 }
             </div>
-
-            @if (item.subMenu && openSubMenuIndex() === $index) {
-            @for (subItem of item.subMenu; track $index) {
-            <div class="pl-3 p-2 cursor-pointer hover:bg-gray-200" (click)="navigateChild(subItem)"
-                [class.bg-gray-200]="isChildActive(subItem.route)">
-                {{ subItem.name }}
-            </div>
-            }
-            }
-            }
         </mat-drawer>
         <mat-drawer-content>
-            <div class="flex items-start">
-                @if(!isOpenSlideMenu()){
-                <button (click)="toggleMenu()" class="cursor-pointer p-2">
-                    <span class="w-6 h-6 icon-[pepicons-pop--menu]"></span>
-                </button>
-                }
-                <div class="flex-1">
-                    <shared-header [currentNamePage]="currentNameRoute()" />
+            <div class="p-4">
+                <div class="flex items-start">
+                    @if(!isOpenSlideMenu()){
+                    <button (click)="toggleMenu()" class="cursor-pointer p-2">
+                        <span class="w-6 h-6 icon-[pepicons-pop--menu]"></span>
+                    </button>
+                    }
+                    <div class="flex-1">
+                        <shared-header [currentNamePage]="currentNameRoute()" />
+                    </div>
                 </div>
-            </div>
-            <div>
-                <ng-content />
+                <div>
+                    <ng-content />
+                </div>
             </div>
         </mat-drawer-content>
     </mat-drawer-container>
