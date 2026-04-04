@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DeviceType } from '@shared/models/device-type.inteface';
 import { map } from 'rxjs';
@@ -12,7 +12,7 @@ export class DeviceTypeService {
   private readonly breakpointObserver = inject(BreakpointObserver);
 
   /** Returns the current device type based on screen size */
-  public readonly device = toSignal(
+  private readonly _device = toSignal(
     this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet]).pipe(
       map((): DeviceType => {
         if (this.breakpointObserver.isMatched(Breakpoints.Handset)) return MENU_CONSTANTS.MOBILE;
@@ -22,4 +22,6 @@ export class DeviceTypeService {
     ),
     { initialValue: MENU_CONSTANTS.DESKTOP as DeviceType }
   );
+
+  public readonly device = computed(() => this._device());
 }
