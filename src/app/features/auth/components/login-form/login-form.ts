@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { email, form, FormField, maxLength, minLength, required } from '@angular/forms/signals';
 import { LoginFormModel } from '@features/auth/models/login-form-interface';
-import { ApiService } from 'src/app/core/services/api-service';
+import { ApiService } from '@core/services/api-service';
 import { Alert } from '@shared/alert/alert';
 import { SessionStorageService } from '@core/services/session-storage-service';
 import { NavigationService } from '@core/services/navigation-service';

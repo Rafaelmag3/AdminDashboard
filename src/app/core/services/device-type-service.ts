@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DeviceType } from '@shared/models/device-type.inteface';
 import { map } from 'rxjs';
-import { MENU_CONSTANTS } from 'src/app/constants/menu.constants';
+import { MENU_CONSTANTS } from '@constants/menu.constants';
 
 @Injectable({
   providedIn: 'root',

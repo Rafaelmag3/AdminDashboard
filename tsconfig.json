@@ -25,6 +25,9 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
+      "@constants/*": [
+        "src/app/constants/*"
+      ],
       "@core/*": [
         "src/app/core/*"
       ],
