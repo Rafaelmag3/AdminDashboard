@@ -1,4 +1,5 @@
 export const environment = {
+    appName: 'Revolutie',
     production: false,
     ALGORITHM: 'AES-GCM',
     KEY_LENGTH: 256,

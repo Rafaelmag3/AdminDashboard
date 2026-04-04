@@ -26,6 +26,7 @@ export class Menu implements OnInit {
   public readonly ICONS = ICONS;
   public readonly menuItems = computed<MenuItem[]>(() => this.menuService.menuItems());
   public readonly iconApp = environment.ICON_APP_URL;
+  public readonly titleApp = environment.appName;
 
   ngOnInit() {
     this._openSubMenuIndex.set(this.menuService.getCurrentIndexRoute());
