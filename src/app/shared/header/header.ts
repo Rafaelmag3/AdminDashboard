@@ -6,7 +6,6 @@ import { Card } from '@shared/card/card';
   selector: 'shared-header',
   imports: [Card],
   templateUrl: './header.html',
-  styleUrl: './header.css',
 })
 export class Header {
   public readonly currentNamePage = input.required<string>();

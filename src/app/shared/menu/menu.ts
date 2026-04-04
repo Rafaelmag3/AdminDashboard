@@ -16,7 +16,6 @@ import { MENU_CONSTANTS } from '@constants/menu.constants';
   selector: 'shared-menu',
   imports: [MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule, Header],
   templateUrl: './menu.html',
-  styleUrl: './menu.css',
 })
 export class Menu implements OnInit {
   private readonly menuService = inject(MenuService);

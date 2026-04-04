@@ -6,7 +6,6 @@ import { Loader } from '@shared/loader/loader';
   selector: 'app-root',
   imports: [RouterOutlet, Loader],
   templateUrl: './app.html',
-  styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('AdminDashboard');

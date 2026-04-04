@@ -6,7 +6,6 @@ import { Menu } from '@shared/menu/menu';
   selector: 'shared-layout',
   imports: [Menu, RouterOutlet],
   templateUrl: './layout.html',
-  styleUrl: './layout.css',
 })
 export class Layout {
 
