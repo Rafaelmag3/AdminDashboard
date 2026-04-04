@@ -1,5 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
-import { UserStoreService } from '@core/services/user-store-service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,14 +7,5 @@ import { UserStoreService } from '@core/services/user-store-service';
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
-  private readonly userStoreService = inject(UserStoreService);
-  public readonly user = computed(() => this.userStoreService.user())
 
-  showData() {
-    console.log(this.user());
-  }
-
-  deleteData() {
-    this.userStoreService.logout();
-  }
 }
