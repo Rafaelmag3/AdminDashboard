@@ -1,27 +1,27 @@
-<div class="grid grid-cols-5 gap-4 items-center">
-    <div class="col-span-3">
+<div class="flex flex-col md:flex-row justify-between gap-3">
+    <div>
         <h1 class="text-3xl font-medium"> {{ currentNamePage() }} </h1>
     </div>
-    <div class="col-span-2">
+    <div>
         <div class="flex justify-between gap-3">
-            <div class="cursor-pointer">
-                <shared-card>
+            <div class="w-auto cursor-pointer">
+                <shared-card stylesCard="">
                     <span class="icon-[material-symbols--notifications-outline-sharp]"></span>
                 </shared-card>
             </div>
-            <div class="flex-1 cursor-pointer">
+            <div class=" cursor-pointer">
                 <shared-card>
                     <div class="flex items-center gap-3">
                         <span class="icon-[gg--search]"></span>
                         <div class="flex-1">
-                            <input type="text" id="search" class="w-100" placeholder="Search anything">
+                            <input type="text" id="search" class="w-auto" placeholder="Search anything">
                         </div>
                     </div>
                 </shared-card>
             </div>
             <div class="cursor-pointer">
                 <shared-card>
-                    Perfil
+                    <img [src]="imageUser" [alt]="currentNamePage()" class="w-8 h-8 rounded-full">
                 </shared-card>
             </div>
         </div>

@@ -10,6 +10,7 @@ export const environment = {
     PASSPHRASE: 'CAMBIA_ESTO_EN_PRODUCCION',
     LOGO_URL: 'http://192.168.100.15:3201/images-logo/logo.jpg',
     ICON_APP_URL: 'http://192.168.100.15:3201/images-logo/icon-app.svg',
+    TEST_USER_PHOTO_URL: 'http://192.168.100.15:3201/images-logo/invincible.jpg',
     SESSION_KEY: 'key',
     TOKEN_KEY: 'tkn',
     LOGIN_URL: 'http://192.168.100.15:3001/auth/login',
