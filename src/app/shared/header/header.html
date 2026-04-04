@@ -1,0 +1,29 @@
+<div class="grid grid-cols-5 gap-4 items-center">
+    <div class="col-span-3">
+        <h1 class="text-3xl font-medium"> {{ currentNamePage() }} </h1>
+    </div>
+    <div class="col-span-2">
+        <div class="flex justify-between gap-3">
+            <div class="cursor-pointer">
+                <shared-card>
+                    <span class="icon-[material-symbols--notifications-outline-sharp]"></span>
+                </shared-card>
+            </div>
+            <div class="flex-1 cursor-pointer">
+                <shared-card>
+                    <div class="flex items-center gap-3">
+                        <span class="icon-[gg--search]"></span>
+                        <div class="flex-1">
+                            <input type="text" id="search" class="w-100" placeholder="Search anything">
+                        </div>
+                    </div>
+                </shared-card>
+            </div>
+            <div class="cursor-pointer">
+                <shared-card>
+                    Perfil
+                </shared-card>
+            </div>
+        </div>
+    </div>
+</div>

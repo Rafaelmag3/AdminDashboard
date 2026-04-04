@@ -12,9 +12,10 @@
             </div>
             @for (item of menuItems(); track $index) {
             <div class="flex justify-between items-center p-2 cursor-pointer hover:bg-gray-200"
-                [class.bg-gray-200]="isActive(item.route)" (click)="toggleSubMenu($index, item)">
+                [class.bg-gray-200]="isActive(item.route)" [class.font-semibold]="isActive(item.route)"
+                (click)="toggleSubMenu($index, item)">
                 <div class="flex items-center gap-1">
-                    <span [class]="item.icon"></span>
+                    <span class="w-4 h-4" [class]="item.icon"></span>
                     {{ item.name }}
                 </div>
                 @if (item.subMenu) {
@@ -33,12 +34,19 @@
             }
         </mat-drawer>
         <mat-drawer-content>
-            @if(!isOpenSlideMenu()){
-            <button (click)="toggleMenu()" class="cursor-pointer p-2">
-                <span class="w-6 h-6 icon-[pepicons-pop--menu]"></span>
-            </button>
-            }
-            <ng-content />
+            <div class="flex items-start">
+                @if(!isOpenSlideMenu()){
+                <button (click)="toggleMenu()" class="cursor-pointer p-2">
+                    <span class="w-6 h-6 icon-[pepicons-pop--menu]"></span>
+                </button>
+                }
+                <div class="flex-1">
+                    <shared-header [currentNamePage]="currentNameRoute()" />
+                </div>
+            </div>
+            <div>
+                <ng-content />
+            </div>
         </mat-drawer-content>
     </mat-drawer-container>
 </div>

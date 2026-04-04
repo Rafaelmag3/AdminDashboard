@@ -13,6 +13,12 @@ export class MenuService {
   public readonly menuItems = computed(() => this._menuItems());
   public readonly _isActiveRoute = signal<boolean>(false);
   public readonly getCurrentIndexRoute = computed(() => this._menuItems().findIndex(item => this.isActive(item.route)));
+  public readonly getCurrentNameRoute = computed(() => {
+    const currentRoute = this._menuItems().find(item => this.isActive(item.route));
+    if (!currentRoute) return '';
+    const childRoute = currentRoute.subMenu?.find(sub => this.isChildActive(sub.route));
+    return childRoute?.name ?? currentRoute.name ?? '';
+  });
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
       filter(e => e instanceof NavigationEnd),

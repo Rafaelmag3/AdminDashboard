@@ -8,10 +8,11 @@ import { ICONS } from 'src/app/constants/icons.contants';
 import { MenuService } from '@core/services/menu-service';
 import { NavigationService } from '@core/services/navigation-service';
 import { environment } from '@env/environment';
+import { Header } from '@shared/header/header';
 
 @Component({
   selector: 'shared-menu',
-  imports: [MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule],
+  imports: [MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule, Header],
   templateUrl: './menu.html',
   styleUrl: './menu.css',
 })
@@ -23,6 +24,7 @@ export class Menu implements OnInit {
   public readonly isOpenSlideMenu = computed(() => this._isOpenSlideMenu());
   private readonly _openSubMenuIndex = signal<number | null>(null);
   public readonly openSubMenuIndex = computed(() => this._openSubMenuIndex());
+  public readonly currentNameRoute = computed(() => this.menuService.getCurrentNameRoute());
   public readonly ICONS = ICONS;
   public readonly menuItems = computed<MenuItem[]>(() => this.menuService.menuItems());
   public readonly iconApp = environment.ICON_APP_URL;
