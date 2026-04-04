@@ -1,5 +1,5 @@
 <div>
-    <mat-drawer-container class="h-dvh" [hasBackdrop]="false">
+    <mat-drawer-container class="h-dvh" [hasBackdrop]="hasBackdrop()" #containerDrawer (backdropClick)="toggleMenu()">
         <mat-drawer #drawer [mode]="'side'" [opened]="isOpenSlideMenu()">
             <div class="bg-gray-100 h-dvh p-4">
                 <div class="flex justify-between items-center">
