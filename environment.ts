@@ -1,5 +1,5 @@
 export const BASE_API_SERVICES = 'http://192.168.100.15:3201';
-export const BASE_API_LOGIN = 'http://192.168.100.15:3201';
+export const BASE_API_LOGIN = 'http://192.168.100.15:3001';
 export const environment = {
     appName: 'Revolutie',
     production: false,

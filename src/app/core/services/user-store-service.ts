@@ -2,12 +2,14 @@ import { inject, Injectable, signal } from '@angular/core';
 import { User } from '@core/models/user-interface';
 import { SessionStorageService } from './session-storage-service';
 import { environment } from '@env/environment';
+import { NavigationService } from './navigation-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserStoreService {
   private readonly sesionStorageService = inject(SessionStorageService);
+  private readonly navigationService = inject(NavigationService);
   readonly user = signal<User | null>(null);
   readonly token = signal<string | null>(null);
 
@@ -28,6 +30,7 @@ export class UserStoreService {
     this.user.set(null);
     this.token.set(null);
     this.sesionStorageService.clean();
+    this.navigationService.navigateTo('login');
   }
 
 }
