@@ -5,6 +5,11 @@ import { ICONS } from './constants/icons.contants';
 
 export const routes: Routes = [
     {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+    },
+    {
         path: 'login',
         canActivate: [loginGuard],
         loadComponent: () => import('@features/auth/pages/login/login').then(m => m.Login)
@@ -24,8 +29,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
+        path: '**',
+        redirectTo: 'dashboard'
     }
 ];
