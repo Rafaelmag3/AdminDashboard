@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+<div class="pt-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        @for (item of cardsDashboard(); track $index) {
+        <dashboard-card [cardItem]="item" />
+        }
+    </div>
+</div>

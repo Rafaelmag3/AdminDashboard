@@ -1,0 +1,11 @@
+<shared-card>
+    <div class="flex items-center gap-4">
+        <div [class]="cardItem().stylesIconCard">
+            <span [class]="cardItem().icon" class="w-5 h-5"></span>
+        </div>
+        <div>
+            <h1 class="text-gray-500"> {{cardItem().title}} </h1>
+            <p class="text-xl font-bold"> {{cardItem().total}} </p>
+        </div>
+    </div>
+</shared-card>

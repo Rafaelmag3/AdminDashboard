@@ -5,4 +5,6 @@ export const ICONS = {
     DOWN_ARROW: 'icon-[mingcute--down-fill]',
     UP_ARROW: 'icon-[mingcute--up-fill]',
     PROFILE: 'icon-[gg--profile]',
+    SERVICES: 'icon-[carbon--cloud-logging]',
+    CUSTOMERS: 'icon-[garden--customer-lists-fill-26]'
 };
