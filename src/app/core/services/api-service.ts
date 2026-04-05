@@ -14,14 +14,14 @@ export interface ApiResponse<T> {
 export class ApiService {
   private readonly http = inject(HttpClient);
 
-  get<T>(endpoint: string, params?: Record<string, string>) {
+  public get<T>(endpoint: string, params?: Record<string, string>): Observable<T> {
     const httpParams = params ? new HttpParams({ fromObject: params }) : undefined;
     return this.http
       .get<T>(endpoint, { params: httpParams })
       .pipe(catchError(this.handleError));
   }
 
-  post<T, B = unknown>(endpoint: string, body: B): Observable<T> {
+  public post<T, B = unknown>(endpoint: string, body: B): Observable<T> {
     return this.http
       .post<T>(endpoint, body)
       .pipe(catchError(this.handleError));
