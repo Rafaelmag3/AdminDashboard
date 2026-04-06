@@ -10,12 +10,21 @@ export const environment = {
     ITERATIONS: 100_000,
     HASH: 'SHA-256',
     PASSPHRASE: 'CAMBIA_ESTO_EN_PRODUCCION',
-    LOGO_URL: `${BASE_API_SERVICES}/public-images/logo.jpg`,
-    ICON_APP_URL: `${BASE_API_SERVICES}/public-images/icon-app.svg`,
-    TEST_USER_PHOTO_URL: `${BASE_API_SERVICES}/public-images/invincible.jpg`,
+    PUBLICS_URL: {
+        LOGO_URL: `${BASE_API_SERVICES}/public-images/logo.jpg`,
+        ICON_APP_URL: `${BASE_API_SERVICES}/public-images/icon-app.svg`,
+        TEST_USER_PHOTO_URL: `${BASE_API_SERVICES}/public-images/invincible.jpg`,
+    },
+    API_URL: {
+        LOGIN_URL: `${BASE_API_LOGIN}/auth/login`,
+        SERVICES: {
+            SERVICES_COUNT_URL: `${BASE_API_SERVICES}/product/count`,
+        },
+        CUSTOMERS: {
+            CUSTOMERS_COUNT_URL: `${BASE_API_SERVICES}/customer/count`,
+            GET_CUSTOMERS_URL: `${BASE_API_SERVICES}/customer/all`,
+        }
+    },
     SESSION_KEY: 'key',
     TOKEN_KEY: 'tkn',
-    LOGIN_URL: `${BASE_API_LOGIN}/auth/login`,
-    SERVICES_COUNT_URL: `${BASE_API_SERVICES}/product/count`,
-    CUSTOMERS_COUNT_URL: `${BASE_API_SERVICES}/customer/count`,
 };
