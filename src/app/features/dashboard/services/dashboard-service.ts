@@ -20,10 +20,10 @@ export class DashboardService {
   public readonly metrics = computed(() => this._getMetrics());
 
   private getTotalCustomers() {
-    return this.apiService.get<number>(environment.CUSTOMERS_COUNT_URL);
+    return this.apiService.get<number>(environment.API_URL.CUSTOMERS.CUSTOMERS_COUNT_URL);
   }
 
   private getTotalServices() {
-    return this.apiService.get<number>(environment.SERVICES_COUNT_URL);
-  }
+    return this.apiService.get<number>(environment.API_URL.SERVICES.SERVICES_COUNT_URL);
+  } 
 }

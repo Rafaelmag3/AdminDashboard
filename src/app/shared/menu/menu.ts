@@ -33,7 +33,7 @@ export class Menu implements OnInit {
   public readonly hasBackdrop = computed(() => this._hasBackdrop());
   public readonly ICONS = ICONS;
   public readonly menuItems = computed<MenuItem[]>(() => this.menuService.menuItems());
-  public readonly iconApp = environment.ICON_APP_URL;
+  public readonly iconApp = environment.PUBLICS_URL.ICON_APP_URL;
   public readonly titleApp = environment.appName;
 
   constructor() {

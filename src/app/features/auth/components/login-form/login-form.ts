@@ -40,7 +40,7 @@ export class LoginForm {
   async sendLoginRequest(event: Event) {
     event.preventDefault();
     if (this.loginForm().valid()) {
-      this.apiService.post<LoginResponse | null>(environment.LOGIN_URL, this.loginForm().value()).subscribe({
+      this.apiService.post<LoginResponse | null>(environment.API_URL.LOGIN_URL, this.loginForm().value()).subscribe({
         next: async (loginData) => {
           if (!loginData) {
             this.alertOpen();

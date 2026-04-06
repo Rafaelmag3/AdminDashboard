@@ -13,8 +13,8 @@ import { environment } from '@env/environment';
 export class Login implements OnInit {
   private readonly sessionStorageService = inject(SessionStorageService);
   private readonly cryptoService = inject(CryptoService);
-  public readonly logoImage = environment.LOGO_URL;
-  public readonly iconApp = environment.ICON_APP_URL;
+  public readonly logoImage = environment.PUBLICS_URL.LOGO_URL;
+  public readonly iconApp = environment.PUBLICS_URL.ICON_APP_URL;
 
   ngOnInit(): void {
     this.sessionStorageService.set(environment.SESSION_KEY, this.cryptoService.generateRandom())

@@ -9,5 +9,5 @@ import { Card } from '@shared/card/card';
 })
 export class Header {
   public readonly currentNamePage = input.required<string>();
-  public readonly imageUser = environment.TEST_USER_PHOTO_URL;
+  public readonly imageUser = environment.PUBLICS_URL.TEST_USER_PHOTO_URL;
 }
