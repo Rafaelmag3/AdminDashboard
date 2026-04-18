@@ -7,10 +7,12 @@ import { SessionStorageService } from '@core/services/session-storage-service';
 import { NavigationService } from '@core/services/navigation-service';
 import { LoginResponse } from '@core/models/user-interface';
 import { environment } from '@env/environment';
+import { AllowedChars } from '@core/directives/allowed-chars';
+import { FormValidationConstants } from '@constants/formValidation.constants';
 
 @Component({
   selector: 'login-form',
-  imports: [FormField, Alert],
+  imports: [FormField, Alert, AllowedChars],
   templateUrl: './login-form.html',
   styleUrl: './login-form.css',
 })
@@ -18,6 +20,7 @@ export class LoginForm {
   private readonly apiService = inject(ApiService);
   private readonly sessionStorageService = inject(SessionStorageService);
   private readonly navigationService = inject(NavigationService);
+  public readonly formValidationConstants = FormValidationConstants;
   public readonly showAlert = signal(false);
   public readonly showPassword = signal(false);
   public readonly typeAlert = 'danger';
