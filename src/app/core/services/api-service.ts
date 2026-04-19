@@ -2,12 +2,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
-export interface ApiResponse<T> {
-  data: T;
-  message?: string;
-  status?: number;
-}
-
 @Injectable({
   providedIn: 'root',
 })
