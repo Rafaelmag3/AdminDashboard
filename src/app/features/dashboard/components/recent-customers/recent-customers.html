@@ -17,8 +17,10 @@
             </div>
         </div>
         <div class="flex flex-col gap-4">
-            @if (customers()?.length === 0) {
-            No Recent Activity Customers
+            @if (serviceErrorMessage()) {
+            <p class="text-red-500 text-center">
+                {{serviceErrorMessage()}}
+            </p>
             }
             @for (customer of customers(); track $index) {
             <shared-card>

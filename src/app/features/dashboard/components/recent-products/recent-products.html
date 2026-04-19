@@ -16,8 +16,10 @@
                 </shared-card>
             </div>
         </div>
-        @if (products()?.length === 0) {
-        No Recent Activity Products
+        @if (serviceErrorMessage()) {
+        <p class="text-red-500 text-center">
+            {{serviceErrorMessage()}}
+        </p>
         }
         @for (product of products(); track $index) {
         <shared-card>
