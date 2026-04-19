@@ -19,13 +19,11 @@ export const environment = {
         LOGIN_URL: `${BASE_API_LOGIN}/auth/login`,
         SERVICES: {
             SERVICES_COUNT_URL: `${BASE_API_SERVICES}/product/count`,
+            GET_PRODUCTS_URL: `${BASE_API_SERVICES}/product/all`,
         },
         CUSTOMERS: {
             CUSTOMERS_COUNT_URL: `${BASE_API_SERVICES}/customer/count`,
             GET_CUSTOMERS_URL: `${BASE_API_SERVICES}/customer/all`,
-        },
-        PRODUCTS: {
-            GET_PRODUCTS_URL: `${BASE_API_SERVICES}/product/all`,
         }
     },
     SESSION_KEY: 'key',
