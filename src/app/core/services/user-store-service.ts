@@ -3,6 +3,7 @@ import { User } from '@core/models/user-interface';
 import { SessionStorageService } from './session-storage-service';
 import { environment } from '@env/environment';
 import { NavigationService } from './navigation-service';
+import { PATH_CONSTANTS } from '@constants/path.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ export class UserStoreService {
     this.user.set(null);
     this.token.set(null);
     this.sesionStorageService.clean();
-    this.navigationService.navigateTo('login');
+    this.navigationService.navigateTo(PATH_CONSTANTS.LOGIN);
   }
 
 }
