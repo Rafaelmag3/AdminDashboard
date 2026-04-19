@@ -21,7 +21,16 @@
             </div>
             <div class="cursor-pointer">
                 <shared-card>
-                    <img [src]="imageUser" [alt]="currentNamePage()" class="w-8 h-8 rounded-full">
+                    <img matButton [matMenuTriggerFor]="menu" [src]="imageUser" [alt]="currentNamePage()"
+                        class="w-8 h-8 rounded-full">
+                    <mat-menu #menu="matMenu">
+                        @for (option of profileOptions; track $index) {
+                        <button mat-menu-item (click)="option.action()" [value]="option">
+                            <span [class]="option.icon"></span>
+                            {{ option.name}}
+                        </button>
+                        }
+                    </mat-menu>
                 </shared-card>
             </div>
         </div>

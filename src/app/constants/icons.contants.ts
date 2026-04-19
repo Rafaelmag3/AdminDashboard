@@ -6,5 +6,7 @@ export const ICONS = {
     UP_ARROW: 'icon-[mingcute--up-fill]',
     PROFILE: 'icon-[gg--profile]',
     SERVICES: 'icon-[carbon--cloud-logging]',
-    CUSTOMERS: 'icon-[garden--customer-lists-fill-26]'
+    CUSTOMERS: 'icon-[garden--customer-lists-fill-26]',
+    LOGOUT: 'icon-[material-symbols--logout]',
+    USER: 'icon-[iconamoon--profile-fill]'
 };
