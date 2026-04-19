@@ -1,0 +1,29 @@
+<div class="flex items-center justify-end gap-4">
+    <span class="pg-summary">
+        Mostrando {{ rangeStart() }}–{{ rangeEnd() }} de {{ total() }}
+    </span>
+    <div class="flex items-center justify-center gap-4">
+        <button [disabled]="!hasPrev()" (click)="changePage(currentPage() - 1)" class="cursor-pointer">
+            <span class="icon-[ooui--next-rtl]"></span>
+        </button>
+        @for (p of visiblePages(); track p) {
+        @if (p === -1) {
+        <span class="pg-ellipsis">…</span>
+        } @else {
+        <button class="p-2 border border-gray-200 hover:bg-gray-200 rounded cursor-pointer"
+            [class.active]="p === currentPage()" (click)="changePage(p)">
+            {{ p }}
+        </button>
+        }
+        }
+        <button [disabled]="!hasNext()" (click)="changePage(currentPage() + 1)" class="cursor-pointer">
+            <span class="icon-[ooui--next-ltr]"></span>
+        </button>
+    </div>
+    <button matButton [matMenuTriggerFor]="menu">{{ limit() }} / pág</button>
+    <mat-menu #menu="matMenu">
+        @for (opt of limitOptions; track opt) {
+        <button mat-menu-item (click)="changeLimit(opt)" [value]="opt">{{ opt }} / pág</button>
+        }
+    </mat-menu>
+</div>
