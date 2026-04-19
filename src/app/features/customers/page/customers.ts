@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { CustomerTable } from '@core/models/customer.inteface';
 import { PageChangeEvent, PaginatedResponse } from '@core/models/pagination.inteface';
 import { CustomerService } from '@features/services/customer-service';
-import { Pagination } from "@shared/pagination/pagination";
+import { Pagination } from '@shared/pagination/pagination';
 
 @Component({
   selector: 'customers',

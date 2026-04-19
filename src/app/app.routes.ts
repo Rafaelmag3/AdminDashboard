@@ -31,7 +31,7 @@ export const routes: Routes = [
                 path: PATH_CONSTANTS.CUSTOMERS,
                 canActivate: [authGuard],
                 data: { name: 'Customers', showInMenu: true, icon: ICONS.CUSTOMERS },
-                loadComponent: () => import('@features/customers/page/customers/customers').then(m => m.Customers)
+                loadComponent: () => import('@features/customers/page/customers').then(m => m.Customers)
             }
         ]
     },
