@@ -11,7 +11,7 @@
         <span class="pg-ellipsis">…</span>
         } @else {
         <button class="p-2 border border-gray-200 hover:bg-gray-200 rounded cursor-pointer"
-            [class.active]="p === currentPage()" (click)="changePage(p)">
+            [class.bg-gray-200]="p === currentPage()" (click)="changePage(p)">
             {{ p }}
         </button>
         }
