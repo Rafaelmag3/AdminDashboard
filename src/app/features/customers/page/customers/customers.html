@@ -41,13 +41,13 @@
                 <tbody>
                     @for (customer of customers(); track customer.idCustomer) {
                     <tr class="bg-neutral-primary-soft border-b border-gray-200 hover:bg-gray-100">
-                        <td class="w-4 p-4">
+                        <th scope="col" class="p-4">
                             <div class="flex items-center">
-                                <input id="table-checkbox-2" type="checkbox" [checked]="customer.checkbox"
-                                    class="w-4 h-4 rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft">
-                                <label for="table-checkbox-2" class="sr-only">Table checkbox</label>
+                                <input id="table-checkbox" type="checkbox" [value]="customer"
+                                    [checked]="customer.checkbox" class="w-4 h-4">
+                                <label for="table-checkbox" class="sr-only">Table checkbox</label>
                             </div>
-                        </td>
+                        </th>
                         <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
                             <div class="flex items-center gap-2">
                                 <div
