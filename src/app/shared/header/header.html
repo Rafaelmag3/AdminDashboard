@@ -20,14 +20,15 @@
                 </shared-card>
             </div>
             <div class="cursor-pointer">
-                <shared-card>
-                    <img matButton [matMenuTriggerFor]="menu" [src]="imageUser" [alt]="currentNamePage()"
-                        class="w-8 h-8 rounded-full">
+                <shared-card matButton [matMenuTriggerFor]="menu">
+                    <img [src]="imageUser" [alt]="currentNamePage()" class="w-8 h-8 rounded-full">
                     <mat-menu #menu="matMenu">
                         @for (option of profileOptions; track $index) {
-                        <button mat-menu-item (click)="option.action()" [value]="option">
-                            <span [class]="option.icon"></span>
-                            {{ option.name}}
+                        <button mat-menu-item (click)="option.action()" class="flex" [value]="option">
+                            <div class="flex items-center gap-2">
+                                <span [class]="option.icon"></span>
+                                <p class="text-sm"> {{ option.name}} </p>
+                            </div>
                         </button>
                         }
                     </mat-menu>
