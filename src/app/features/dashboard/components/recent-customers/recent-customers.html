@@ -1,0 +1,42 @@
+<shared-card>
+    <div class="flex flex-col gap-4">
+        <div class="flex">
+            <div class="flex items-center gap-3 w-4/5">
+                <span class="cursor-pointer w-5 h-5 icon-[iconamoon--restart-light]"
+                    (click)="btnReloadCustomers()"></span>
+                <h1 class="font-bold">
+                    Recent Activity Customers
+                </h1>
+            </div>
+            <div class="w-1/5 cursor-pointer">
+                <shared-card>
+                    <div class="cursor-pointer flex justify-center w-auto">
+                        <button class="cursor-pointer font-bold"> See All </button>
+                    </div>
+                </shared-card>
+            </div>
+        </div>
+        <div class="flex flex-col gap-4">
+            @if (customers()?.length === 0) {
+            No Recent Activity Customers
+            }
+            @for (customer of customers(); track $index) {
+            <shared-card>
+                <div class="flex items-center gap-4">
+                    <div class="bg-blue-100 text-blue-500 rounded-full p-2 flex items-center justify-center">
+                        <span class=" icon-[carbon--customer-service]"></span>
+                    </div>
+                    <div class="cursor-pointer">
+                        <p class="text-gray-500">
+                            {{customer.name}} {{customer.lastName}}
+                        </p>
+                        <p class="text-gray-400 text-sm">
+                            {{customer.createdAt}}
+                        </p>
+                    </div>
+                </div>
+            </shared-card>
+            }
+        </div>
+    </div>
+</shared-card>

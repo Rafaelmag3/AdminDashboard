@@ -1,0 +1,40 @@
+<shared-card>
+    <div class="flex flex-col gap-4">
+        <div class="flex">
+            <div class="flex items-center gap-3 w-4/5">
+                <span class="cursor-pointer w-5 h-5 icon-[iconamoon--restart-light]"
+                    (click)="btnReloadProducts()"></span>
+                <h1 class="font-bold">
+                    Recent Activity Products
+                </h1>
+            </div>
+            <div class="w-1/5 cursor-pointer">
+                <shared-card>
+                    <div class="cursor-pointer flex justify-center w-auto">
+                        <button class="cursor-pointer font-bold"> See All </button>
+                    </div>
+                </shared-card>
+            </div>
+        </div>
+        @if (products()?.length === 0) {
+        No Recent Activity Products
+        }
+        @for (product of products(); track $index) {
+        <shared-card>
+            <div class="flex items-center gap-4">
+                <div class="bg-yellow-100 text-yellow-500 rounded-full p-2 flex items-center justify-center">
+                    <span class="icon-[fa-brands--product-hunt]"></span>
+                </div>
+                <div class="cursor-pointer">
+                    <p class="text-gray-500">
+                        {{product.typeService}}
+                    </p>
+                    <p class="text-gray-400 text-sm">
+                        {{product.description}}
+                    </p>
+                </div>
+            </div>
+        </shared-card>
+        }
+    </div>
+</shared-card>

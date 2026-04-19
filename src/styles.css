@@ -8,8 +8,13 @@
     width: 18px !important;
 }
 
-.alert, .icon-\[mi--close\] {
+.alert,
+.icon-\[mi--close\] {
     background: white !important;
     width: 20px !important;
     height: 20px !important;
+}
+
+.he-100 {
+    height: 100%;
 }
