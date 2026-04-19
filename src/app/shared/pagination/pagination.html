@@ -20,7 +20,14 @@
             <span class="icon-[ooui--next-ltr]"></span>
         </button>
     </div>
-    <button matButton [matMenuTriggerFor]="menu">{{ limit() }} / pág</button>
+    <button matButton [matMenuTriggerFor]="menu">
+        <div class="flex items-center gap-2">
+            <p>
+                {{ limit() }} / pág
+            </p>
+            <span class="icon-[uiw--down]"></span>
+        </div>
+    </button>
     <mat-menu #menu="matMenu">
         @for (opt of limitOptions; track opt) {
         <button mat-menu-item (click)="changeLimit(opt)" [value]="opt">{{ opt }} / pág</button>
