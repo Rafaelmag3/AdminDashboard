@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 
@@ -21,7 +21,7 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  private handleError(error: any): Observable<never> {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     const message = error?.error?.message ?? 'Service not available';
     return throwError(() => new Error(message));
   }

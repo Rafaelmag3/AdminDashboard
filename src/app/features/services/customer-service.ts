@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Customer } from '@core/models/customer.inteface';
+import { Customer, NewCustomer } from '@core/models/customer.inteface';
 import { GenericResponse } from '@core/models/generic-response.interface';
 import { PageChangeEvent } from '@core/models/pagination.inteface';
 import { ApiService } from '@core/services/api-service';
@@ -24,5 +24,9 @@ export class CustomerService {
 
   public getTotalCustomers(): Observable<number> {
     return this.apiService.get<number>(environment.API_URL.CUSTOMERS.CUSTOMERS_COUNT_URL);
+  }
+
+  public createCustomer(customer: NewCustomer): Observable<string | null> {
+    return this.apiService.post<string | null, NewCustomer>(environment.API_URL.CUSTOMERS.CREATE_CUSTOMER_URL, customer);
   }
 }

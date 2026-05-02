@@ -24,6 +24,7 @@ export const environment = {
         CUSTOMERS: {
             CUSTOMERS_COUNT_URL: `${BASE_API_SERVICES}/customer/count`,
             GET_CUSTOMERS_URL: `${BASE_API_SERVICES}/customer/all`,
+            CREATE_CUSTOMER_URL: `${BASE_API_SERVICES}/customer`,
         }
     },
     SESSION_KEY: 'key',

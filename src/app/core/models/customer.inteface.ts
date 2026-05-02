@@ -10,3 +10,11 @@ export interface Customer {
 export interface CustomerTable extends Customer {
     checkbox: boolean,
 }
+
+export interface NewCustomer {
+    name: string,
+    lastName: string,
+    phoneNumber: string,
+    email: string,
+}
+

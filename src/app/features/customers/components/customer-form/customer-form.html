@@ -1,30 +1,62 @@
-<form class="flex flex-col gap-4 pt-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="input-group">
-            <input type="text" placeholder=" " />
-            <label>Name</label>
-        </div>
-        <div class="input-group">
-            <input type="text" placeholder=" " />
-            <label>Last Name</label>
-        </div>
-        <div class="input-group">
-            <input type="text" placeholder=" " />
-            <label>Email</label>
-        </div>
-        <div class="input-group">
-            <input type="text" placeholder=" " />
-            <label>Phone</label>
-        </div>
+<div class="pt-4">
+    @if(messageAlert()){
+    <div class="py-4">
+        <shared-alert [typeAlert]="typeAlert()" [textAlert]="messageAlert()" [showAlert]="showAlert()"
+            (alertClosed)="closeAlert()" />
     </div>
-    <div class="grid grid-rows md:grid-cols-6 gap-4">
-        <button
-            class="order-2 md:order-0 col-span-1 md:col-start-3 btn--secondary border rounded px-2 py-4 cursor-pointer"
-            type="button" (click)="btnCancelForm()">
-            Cancel
-        </button>
-        <button class="order-1 md:order-0 col-span-1 btn--primary" type="submit">
-            Save
-        </button>
-    </div>
-</form>
+    }
+    <form class="flex flex-col gap-4 " (submit)="onSubmitNewCustomer($event)">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="input-group">
+                <input type="text" placeholder=" " [formField]="customerForm.name"
+                    [allowedChars]="formValidationConstants.NAME_AND_LASTNAME_ALLOWED_CHARS" />
+                <label>Name</label>
+                @if(customerForm.name().touched() && customerForm.name().invalid()){
+                @for(error of customerForm.name().errors(); track error){
+                <p class="text-red-500 text-sm pt-2">{{error.message}}</p>
+                }
+                }
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder=" " [formField]="customerForm.lastName"
+                    [allowedChars]="formValidationConstants.NAME_AND_LASTNAME_ALLOWED_CHARS" />
+                <label>Last Name</label>
+                @if(customerForm.lastName().touched() && customerForm.lastName().invalid()){
+                @for(error of customerForm.lastName().errors(); track error){
+                <p class="text-red-500 text-sm pt-2">{{error.message}}</p>
+                }
+                }
+            </div>
+            <div class="input-group">
+                <input type="email" placeholder=" " [formField]="customerForm.email"
+                    [allowedChars]="formValidationConstants.EMAIL_ALLOWED_CHARS">
+                <label>Email</label>
+                @if(customerForm.email().touched() && customerForm.email().invalid()){
+                @for(error of customerForm.email().errors(); track error){
+                <p class="text-red-500 text-sm pt-2">{{error.message}}</p>
+                }
+                }
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder=" " [formField]="customerForm.phoneNumber"
+                    [allowedChars]="formValidationConstants.PHONE_ALLOWED_CHARS">
+                <label>Phone</label>
+                @if(customerForm.phoneNumber().touched() && customerForm.phoneNumber().invalid()){
+                @for(error of customerForm.phoneNumber().errors(); track error){
+                <p class="text-red-500 text-sm pt-2">{{error.message}}</p>
+                }
+                }
+            </div>
+        </div>
+        <div class="grid grid-rows md:grid-cols-6 gap-4">
+            <button
+                class="order-2 md:order-0 col-span-1 md:col-start-3 btn--secondary border rounded px-2 py-4 cursor-pointer"
+                type="button" (click)="btnCancelForm()">
+                Cancel
+            </button>
+            <button class="order-1 md:order-0 col-span-1 btn--primary" type="submit">
+                Save
+            </button>
+        </div>
+    </form>
+</div>
