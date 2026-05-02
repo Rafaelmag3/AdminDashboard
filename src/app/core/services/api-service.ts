@@ -22,7 +22,10 @@ export class ApiService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    const message = error?.error?.message ?? 'Service not available';
-    return throwError(() => new Error(message));
+    let message = error?.error?.message ?? 'Service not available';
+    if (Array.isArray(message)) {
+      message = message.join(', ');
+    }
+    return throwError(() => message);
   }
 }
