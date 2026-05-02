@@ -22,3 +22,67 @@
 .mdc-button__label {
     color: var(--app-primary-text-color) !important;
 }
+
+.input-group {
+    position: relative;
+    width: auto;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px 12px;
+    border: 1px solid var(--app-border-grey);
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+.input-group label {
+    position: absolute;
+    left: 12px;
+    top: 14px;
+    color: #999;
+    font-size: 14px;
+    background: var(--app-secondary-color);
+    padding: 0 4px;
+    transition: 0.2s ease;
+    pointer-events: none;
+}
+
+.input-group input:focus+label {
+    top: -8px;
+    left: 10px;
+    font-size: 12px;
+    color: var(--app-primary-color);
+}
+
+.input-group input:focus+label,
+.input-group input:not(:placeholder-shown)+label {
+    top: -8px;
+    left: 10px;
+    font-size: 12px;
+}
+
+.input-group input:focus {
+    border-color: var(--app-primary-color)
+}
+
+.btn-show {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn--primary {
+    background-color: var(--app-primary-color);
+    color: var(--app-white-color);
+    padding: 16px 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
