@@ -8,11 +8,13 @@
         </p>
     </div>
     <div class="flex gap-4">
-        <button class="flex items-center gap-1 bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer">
+        <button class="flex items-center gap-1 bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
+            (click)="btnNewCustomer()">
             <span class="icon-[mi--add]"></span>
             Add Customer
         </button>
-        <button class="flex items-center gap-1 bg-red-500 text-white px-4 py-2 rounded-md cursor-pointer">
+        <button class="flex items-center gap-1 text-white px-4 py-2 rounded-md cursor-pointer"
+            [disabled]="isDisabledDelete()" [class]="isDisabledDelete() ? 'bg-gray-400' : 'bg-red-500'">
             <span class="icon-[mi--delete]"></span>
             Delete Customers
         </button>
@@ -24,8 +26,8 @@
                     <tr>
                         <th scope="col" class="p-4">
                             <div class="flex items-center">
-                                <input id="table-checkbox" type="checkbox" (click)="checkAllCustomers()" value=""
-                                    class="w-4 h-4">
+                                <input id="table-checkbox" type="checkbox" #tableCheckbox
+                                    (click)="checkAllCustomers($event)" value="" class="w-4 h-4">
                                 <label for="table-checkbox" class="sr-only">Table checkbox</label>
                             </div>
                         </th>
@@ -44,7 +46,7 @@
                         <th scope="col" class="p-4">
                             <div class="flex items-center">
                                 <input id="table-checkbox" type="checkbox" [value]="customer"
-                                    [checked]="customer.checkbox" class="w-4 h-4">
+                                    [checked]="customer.checkbox" class="w-4 h-4" (click)="selectCustomers(customer)">
                                 <label for="table-checkbox" class="sr-only">Table checkbox</label>
                             </div>
                         </th>
@@ -66,8 +68,14 @@
                             {{ customer.phoneNumber }}
                         </td>
                         <td class="flex items-center px-6 py-4">
-                            <button class="font-medium text-fg-brand hover:underline">Edit</button>
-                            <button class="font-medium text-danger hover:underline ms-3">Remove</button>
+                            <button
+                                class="font-medium text-fg-brand hover:underline hover:text-blue-500 cursor-pointer">
+                                Edit
+                            </button>
+                            <button
+                                class="font-medium text-danger hover:underline hover:text-red-500 ms-3 cursor-pointer">
+                                Remove
+                            </button>
                         </td>
                     </tr>
                     }

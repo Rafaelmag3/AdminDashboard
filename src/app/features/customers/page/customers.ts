@@ -1,7 +1,9 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, ElementRef, inject, OnInit, signal, viewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { PATH_CONSTANTS } from '@constants/path.constants';
 import { CustomerTable } from '@core/models/customer.inteface';
 import { PageChangeEvent, PaginatedResponse } from '@core/models/pagination.inteface';
+import { NavigationService } from '@core/services/navigation-service';
 import { CustomerService } from '@features/services/customer-service';
 import { Pagination } from '@shared/pagination/pagination';
 
@@ -12,10 +14,19 @@ import { Pagination } from '@shared/pagination/pagination';
 })
 export class Customers implements OnInit {
   private readonly customerService = inject(CustomerService);
+  private readonly navigationService = inject(NavigationService);
   private readonly _totalCustomers = toSignal(this.customerService.getTotalCustomers());
+  public readonly tableCheckbox = viewChild<ElementRef<HTMLInputElement>>('tableCheckbox');
   private readonly _customers = signal<CustomerTable[] | null>(null);
   public readonly totalCustomers = computed(() => this._totalCustomers());
   public readonly customers = computed(() => this._customers());
+  public readonly isDisabledDelete = computed(() => {
+    const customer = this.customers();
+    if (!customer) return true;
+    const customersSelected = customer.some(c => c.checkbox);
+    return !customersSelected;
+  });
+
   public readonly pagination = signal<PaginatedResponse>({
     total: 0,
     page: 1,
@@ -53,11 +64,17 @@ export class Customers implements OnInit {
     }
   ];
 
+  constructor() {
+    effect(() => {
+      this.updateMasterCheckbox();
+    });
+  }
+
   ngOnInit(): void {
     this.getCustomers();
   }
 
-  getCustomers(page: number = 1, limit: number = 10) {
+  getCustomers(page: number = 1, limit: number = 10): void {
     this.customerService.getCustomers({ page, limit }).subscribe({
       next: (response) => {
         if (!response || !response.data) {
@@ -83,23 +100,49 @@ export class Customers implements OnInit {
     })
   }
 
-  checkAllCustomers() {
-    this._customers.update((customers) => {
-      return customers?.map((c) => {
-        return {
-          ...c,
-          checkbox: !c.checkbox
-        };
-      }) || null;
-    });
+  checkAllCustomers(event: Event): void {
+    const checked = (event.target as HTMLInputElement).checked;
+    this._customers.update(customers =>
+      customers?.map(c => ({ ...c, checkbox: checked })) || null
+    );
   }
 
-  onPageChange(event: PageChangeEvent) {
+  selectCustomers(customer: CustomerTable): void {
+    this._customers.update(customers =>
+      customers?.map(c =>
+        c.idCustomer === customer.idCustomer
+          ? { ...c, checkbox: !c.checkbox }
+          : c
+      ) || null
+    );
+  }
+
+  private updateMasterCheckbox(): void {
+    const all = this.customers();
+    const totalSelected = all?.filter(c => c.checkbox).length;
+    const checkbox = this.tableCheckbox()?.nativeElement;
+    if (!checkbox) return;
+    if (totalSelected === 0) {
+      checkbox.checked = false;
+      return;
+    }
+    if (totalSelected === all?.length) {
+      checkbox.checked = true;
+      return;
+    }
+    checkbox.checked = false;
+  }
+
+  onPageChange(event: PageChangeEvent): void {
     this.pagination.set({
       ...this.pagination(),
       page: event.page,
       limit: event.limit
     });
     this.getCustomers(this.pagination().page, this.pagination().limit);
+  }
+
+  btnNewCustomer() {
+    this.navigationService.navigateTo(PATH_CONSTANTS.CUSTOMER_FORM);
   }
 }
