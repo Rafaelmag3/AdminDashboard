@@ -17,7 +17,7 @@ export class Table implements OnInit {
   private readonly _customers = signal<CustomerTable[] | null>(null);
   public readonly totalCustomers = computed(() => this._totalCustomers());
   public readonly customers = computed(() => this._customers());
-  public readonly onSelectedCustomers = output<CustomerTable[] | null>();
+  public readonly customersSelected = output<CustomerTable[] | null>();
   public readonly isDisabledDelete = computed(() => {
     const customers = this.customers();
     if (!customers) return true;
@@ -103,7 +103,7 @@ export class Table implements OnInit {
     this._customers.update(customers =>
       customers?.map(c => ({ ...c, checkbox: checked })) || null
     );
-    this.onSelectedCustomers.emit(this.customers());
+    this.customersSelected.emit(this.customers());
   }
 
   selectCustomers(customer: CustomerTable): void {
@@ -145,6 +145,6 @@ export class Table implements OnInit {
   getSelectedCustomers(): void {
     const selectedCustomers = this.customers()?.filter(customer => customer.checkbox);
     if (!selectedCustomers) return;
-    this.onSelectedCustomers.emit(selectedCustomers);
+    this.customersSelected.emit(selectedCustomers);
   }
 }

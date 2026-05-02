@@ -29,7 +29,7 @@ export class Customers {
     this.navigationService.navigateTo(PATH_CONSTANTS.CUSTOMER_FORM);
   }
 
-  onSelectedCustomers(customers: CustomerTable[] | null): void {
+  handleSelectedCustomers(customers: CustomerTable[] | null): void {
     this._selectedCustomers.set(customers);
   }
 }
