@@ -4,5 +4,7 @@ export const PATH_CONSTANTS = {
     FULL: 'full',
     LOGIN: 'login',
     DASHBOARD: 'dashboard',
-    CUSTOMERS: 'customers'
+    CUSTOMERS: 'customers',
+    FORM: 'form',
+    CUSTOMER_FORM: 'customers/form',
 } as const;

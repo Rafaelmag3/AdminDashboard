@@ -29,9 +29,20 @@ export const routes: Routes = [
             },
             {
                 path: PATH_CONSTANTS.CUSTOMERS,
-                canActivate: [authGuard],
-                data: { name: 'Customers', showInMenu: true, icon: ICONS.CUSTOMERS },
-                loadComponent: () => import('@features/customers/page/customers').then(m => m.Customers)
+                data: { name: 'Customers', showInMenu: true, icon: ICONS.DASHBOARD },
+                children: [
+                    {
+                        path: PATH_CONSTANTS.ROOT,
+                        canActivate: [authGuard],
+                        data: { name: 'Customers', showInMenu: true, icon: ICONS.CUSTOMERS },
+                        loadComponent: () => import('@features/customers/page/customers').then(m => m.Customers),
+                    },
+                    {
+                        path: PATH_CONSTANTS.FORM,
+                        data: { name: 'New Customer', showInMenu: false },
+                        loadComponent: () => import('@features/customers/components/customer-form/customer-form').then(m => m.CustomerForm)
+                    }
+                ]
             }
         ]
     },
