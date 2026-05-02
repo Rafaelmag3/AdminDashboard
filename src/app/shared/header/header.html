@@ -20,7 +20,7 @@
                 </shared-card>
             </div>
             <div class="cursor-pointer">
-                <shared-card matButton [matMenuTriggerFor]="menu">
+                <shared-card matButton [matMenuTriggerFor]="menu" stylesCard="p-0">
                     <img [src]="imageUser" [alt]="currentNamePage()" class="w-8 h-8 rounded-full">
                     <mat-menu #menu="matMenu">
                         @for (option of profileOptions; track $index) {
