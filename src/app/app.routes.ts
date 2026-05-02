@@ -40,7 +40,7 @@ export const routes: Routes = [
                     {
                         path: PATH_CONSTANTS.FORM,
                         data: { name: 'New Customer', showInMenu: false },
-                        loadComponent: () => import('@features/customers/components/customer-form/customer-form').then(m => m.CustomerForm)
+                        loadComponent: () => import('@features/customers/components/form/form').then(m => m.Form)
                     }
                 ]
             }

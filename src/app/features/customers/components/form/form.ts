@@ -11,12 +11,12 @@ import { Alert } from '@shared/alert/alert';
 import { TypeAlert } from '@shared/models/alert.interface';
 
 @Component({
-  selector: 'app-customer-form',
+  selector: 'app-form',
   imports: [FormField, Alert, AllowedChars],
-  templateUrl: './customer-form.html',
-  styleUrl: './customer-form.css',
+  templateUrl: './form.html',
+  styleUrl: './form.css',
 })
-export class CustomerForm {
+export class Form {
   private readonly customerService = inject(CustomerService);
   private readonly navigationService = inject(NavigationService);
   public readonly messageAlert = signal<string>('');
