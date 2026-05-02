@@ -14,7 +14,6 @@ import { FormValidationConstants } from '@constants/formValidation.constants';
   selector: 'login-form',
   imports: [FormField, Alert, AllowedChars],
   templateUrl: './login-form.html',
-  styleUrl: './login-form.css',
 })
 export class LoginForm {
   private readonly apiService = inject(ApiService);
