@@ -11,7 +11,7 @@ import { Alert } from '@shared/alert/alert';
 import { TypeAlert } from '@shared/models/alert.interface';
 
 @Component({
-  selector: 'app-form',
+  selector: 'customer-form',
   imports: [FormField, Alert, AllowedChars],
   templateUrl: './form.html',
   styleUrl: './form.css',
