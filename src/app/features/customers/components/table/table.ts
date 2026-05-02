@@ -18,12 +18,6 @@ export class Table implements OnInit {
   public readonly totalCustomers = computed(() => this._totalCustomers());
   public readonly customers = computed(() => this._customers());
   public readonly customersSelected = output<CustomerTable[] | null>();
-  public readonly isDisabledDelete = computed(() => {
-    const customers = this.customers();
-    if (!customers) return true;
-    const customersSelected = customers.some(c => c.checkbox);
-    return !customersSelected;
-  });
 
   public readonly pagination = signal<PaginatedResponse>({
     total: 0,
