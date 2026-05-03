@@ -86,13 +86,7 @@ export class Form implements OnInit {
     this.customerService.createCustomer(this.customerForm().value()).subscribe({
       next: (response) => {
         if (response === null) {
-          this.messageAlert.set('Customer created successfully');
-          this.typeAlert.set('success');
-          this.showAlert.set(true);
-          this.resetForm();
-          setTimeout(() => {
-            this.closeAlert();
-          }, 3500);
+          this.operationSuccess('Customer created successfully');
           return;
         }
         this.errorOperation('Customer creation failed');
@@ -117,7 +111,7 @@ export class Form implements OnInit {
     }).subscribe({
       next: (response) => {
         if (response === null) {
-          this.updateSuccess();
+          this.operationSuccess('Customer updated successfully');
           return;
         }
         this.errorOperation('Customer updated failed');
@@ -171,8 +165,8 @@ export class Form implements OnInit {
    * It sets the success message and type alert
    * It resets the form and redirects to the customers list
    */
-  private updateSuccess(): void {
-    this.messageAlert.set('Customer updated successfully');
+  private operationSuccess(message: string): void {
+    this.messageAlert.set(message);
     this.typeAlert.set('success');
     this.showAlert.set(true);
     setTimeout(() => {
