@@ -27,9 +27,22 @@ export class Customers {
 
   btnNewCustomer() {
     this.navigationService.navigateTo(PATH_CONSTANTS.CUSTOMER_FORM);
+    this.customerService.dataUpdateCustomer.set(null);
   }
 
   handleSelectedCustomers(customers: CustomerTable[] | null): void {
     this._selectedCustomers.set(customers);
+  }
+
+  handleUpdateCustomer(customer: CustomerTable | null) {
+    if (!customer) return;
+    this.customerService.dataUpdateCustomer.set({
+      idCustomer: customer.idCustomer,
+      name: customer.name,
+      lastName: customer.lastName,
+      phoneNumber: customer.phoneNumber,
+      email: customer.email,
+    });
+    this.navigationService.navigateTo(PATH_CONSTANTS.CUSTOMER_FORM);
   }
 }

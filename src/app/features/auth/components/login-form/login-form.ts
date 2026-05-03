@@ -8,7 +8,7 @@ import { NavigationService } from '@core/services/navigation-service';
 import { LoginResponse } from '@core/models/user-interface';
 import { environment } from '@env/environment';
 import { AllowedChars } from '@core/directives/allowed-chars';
-import { FormValidationConstants } from '@constants/formValidation.constants';
+import { FormValidationConstants } from '@constants/form-validation.constants';
 
 @Component({
   selector: 'login-form',

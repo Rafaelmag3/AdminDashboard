@@ -19,5 +19,6 @@
             Delete Customers
         </button>
     </div>
-    <customer-table (customersSelected)="handleSelectedCustomers($event)" />
+    <customer-table (customersSelected)="handleSelectedCustomers($event)"
+        (customerUpdated)="handleUpdateCustomer($event)" />
 </div>

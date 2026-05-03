@@ -18,6 +18,7 @@ export class Table implements OnInit {
   public readonly totalCustomers = computed(() => this._totalCustomers());
   public readonly customers = computed(() => this._customers());
   public readonly customersSelected = output<CustomerTable[] | null>();
+  public readonly customerUpdated = output<CustomerTable | null>();
 
   public readonly pagination = signal<PaginatedResponse>({
     total: 0,
@@ -140,5 +141,9 @@ export class Table implements OnInit {
     const selectedCustomers = this.customers()?.filter(customer => customer.checkbox);
     if (!selectedCustomers) return;
     this.customersSelected.emit(selectedCustomers);
+  }
+
+  btnUpdateCustomer(customer: CustomerTable): void {
+    this.customerUpdated.emit(customer);
   }
 }

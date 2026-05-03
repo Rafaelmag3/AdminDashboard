@@ -46,7 +46,8 @@
                         {{ customer.phoneNumber }}
                     </td>
                     <td class="flex items-center px-6 py-4">
-                        <button class="font-medium text-fg-brand hover:underline hover:text-blue-500 cursor-pointer">
+                        <button class="font-medium text-fg-brand hover:underline hover:text-blue-500 cursor-pointer"
+                            (click)="btnUpdateCustomer(customer)">
                             Edit
                         </button>
                         <button class="font-medium text-danger hover:underline hover:text-red-500 ms-3 cursor-pointer">

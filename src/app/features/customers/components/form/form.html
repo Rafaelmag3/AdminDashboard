@@ -6,9 +6,9 @@
     </div>
     }
     <h1 class="text-2xl mb-4">
-        New Customer
+        {{ formMode() }}
     </h1>
-    <form class="flex flex-col gap-4 " (submit)="onSubmitNewCustomer($event)">
+    <form class="flex flex-col gap-4 " (submit)="onSubmitCustomer($event)">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="input-group">
                 <input type="text" placeholder=" " [formField]="customerForm.name"

@@ -1,6 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { email, form, required, FormField, minLength, maxLength } from '@angular/forms/signals';
-import { FormValidationConstants } from '@constants/formValidation.constants';
+import { FormValidationConstants } from '@constants/form-validation.constants';
 import { PATH_CONSTANTS } from '@constants/path.constants';
 import { AllowedChars } from '@core/directives/allowed-chars';
 import { NewCustomer } from '@core/models/customer.inteface';
@@ -16,7 +16,7 @@ import { TypeAlert } from '@shared/models/alert.interface';
   templateUrl: './form.html',
   styleUrl: './form.css',
 })
-export class Form {
+export class Form implements OnInit {
   private readonly customerService = inject(CustomerService);
   private readonly navigationService = inject(NavigationService);
   public readonly messageAlert = signal<string>('');
@@ -29,7 +29,8 @@ export class Form {
     email: '',
     phoneNumber: '',
   });
-
+  public readonly dataUpdateCustomer = computed(() => this.customerService.dataUpdateCustomer());
+  public readonly formMode = signal<string>('New Customer');
   public readonly customerForm = form(this.customerFormModel, (input) => {
     required(input.name, { message: 'Name is required' });
     minLength(input.name, 2, { message: 'Name must be at least 2 characters long' });
@@ -42,16 +43,46 @@ export class Form {
     phoneNumber(input.phoneNumber);
   });
 
+  ngOnInit(): void {
+    const dataCustomer = this.dataUpdateCustomer();
+    if (!dataCustomer) return;
+    this.formMode.set('Edit Customer');
+    this.customerFormModel.set({
+      email: dataCustomer.email ?? '',
+      lastName: dataCustomer.lastName,
+      name: dataCustomer.name,
+      phoneNumber: dataCustomer.phoneNumber ?? '',
+    });
+  }
+
   btnCancelForm(): void {
     this.navigationService.navigateTo(PATH_CONSTANTS.CUSTOMERS);
   }
 
-  onSubmitNewCustomer(event: Event) {
+  /**
+   * This method is called when the customer form is submitted
+   * It validates the form
+   * It calls the create customer or update customer method
+   */
+  onSubmitCustomer(event: Event): void {
     event.preventDefault();
     if (this.customerForm().invalid()) {
       return;
     }
+    if (!this.dataUpdateCustomer()) {
+      this.createCustomer();
+      return;
+    }
 
+    this.updateCustomer();
+  }
+
+  /**
+   * This method is called when the customer creation is performed
+   * It sets the success message and type alert
+   * It resets the form and redirects to the customers list
+   */
+  private createCustomer(): void {
     this.customerService.createCustomer(this.customerForm().value()).subscribe({
       next: (response) => {
         if (response === null) {
@@ -59,26 +90,60 @@ export class Form {
           this.typeAlert.set('success');
           this.showAlert.set(true);
           this.resetForm();
+          setTimeout(() => {
+            this.closeAlert();
+          }, 3500);
           return;
         }
-        this.messageAlert.set('Customer creation failed');
-        this.typeAlert.set('danger');
-        this.showAlert.set(true);
+        this.errorOperation('Customer creation failed');
       },
       error: (error: string) => {
-        this.messageAlert.set(error);
-        this.typeAlert.set('danger');
-        this.showAlert.set(true);
+        this.errorOperation(error);
       },
     });
   }
 
+  /**
+   * This method is called when the update operation is performed
+   * It sets the update message and type alert
+   * It resets the form and redirects to the customers list
+   */
+  private updateCustomer(): void {
+    const idCustomer = this.dataUpdateCustomer()?.idCustomer;
+    if (!idCustomer) return;
+    this.customerService.updateCustomer({
+      idCustomer,
+      ...this.customerForm().value(),
+    }).subscribe({
+      next: (response) => {
+        if (response === null) {
+          this.updateSuccess();
+          return;
+        }
+        this.errorOperation('Customer updated failed');
+      },
+      error: (error: string) => {
+        this.errorOperation(error);
+      },
+    })
+  }
+
+  /**
+   * This method is called when the alert is closed
+   * It sets the alert message and type alert to its default values
+   * It hides the alert
+   */
   closeAlert(): void {
     this.messageAlert.set('');
     this.typeAlert.set('danger');
     this.showAlert.set(false);
   }
 
+  /**
+   * This method is called when the customer form is reset
+   * It sets the customer form model to a new customer
+   * It resets the customer form
+   */
   private readonly resetForm = (): void => {
     this.customerFormModel.set({
       name: '',
@@ -87,8 +152,33 @@ export class Form {
       phoneNumber: '',
     });
     this.customerForm().reset();
+  }
+
+
+  /**
+   * This method is called when an error occurs during customer creation or update
+   * It sets the error message and type alert
+   * It shows the alert
+   */
+  private errorOperation(message: string): void {
+    this.messageAlert.set(message);
+    this.typeAlert.set('danger');
+    this.showAlert.set(true);
+  }
+
+  /**
+   * This method is called when the update operation is successful
+   * It sets the success message and type alert
+   * It resets the form and redirects to the customers list
+   */
+  private updateSuccess(): void {
+    this.messageAlert.set('Customer updated successfully');
+    this.typeAlert.set('success');
+    this.showAlert.set(true);
     setTimeout(() => {
+      this.resetForm();
       this.closeAlert();
-    }, 3500);
+      this.navigationService.navigateTo(PATH_CONSTANTS.CUSTOMERS);
+    }, 1500);
   }
 }

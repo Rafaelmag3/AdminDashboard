@@ -21,6 +21,12 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
+  public put<T, B = unknown>(endpoint: string, body: B): Observable<T> {
+    return this.http
+      .put<T>(endpoint, body)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     let message = error?.error?.message ?? 'Service not available';
     if (Array.isArray(message)) {

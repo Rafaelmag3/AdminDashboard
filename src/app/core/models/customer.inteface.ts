@@ -18,3 +18,11 @@ export interface NewCustomer {
     email: string,
 }
 
+export interface UpdateCustomer {
+    idCustomer: number,
+    name: string,
+    lastName: string,
+    phoneNumber: string | null,
+    email: string | null,
+}
+
