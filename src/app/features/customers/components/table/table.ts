@@ -2,6 +2,7 @@ import { Component, computed, effect, ElementRef, inject, OnInit, output, signal
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CustomerTable } from '@core/models/customer.inteface';
 import { PaginatedResponse, PageChangeEvent } from '@core/models/pagination.inteface';
+import { UserStoreService } from '@core/services/user-store-service';
 import { CustomerService } from '@features/services/customer-service';
 import { Pagination } from '@shared/pagination/pagination';
 
@@ -12,11 +13,13 @@ import { Pagination } from '@shared/pagination/pagination';
 })
 export class Table implements OnInit {
   private readonly customerService = inject(CustomerService);
+  private readonly userStoreService = inject(UserStoreService);
   private readonly _totalCustomers = toSignal(this.customerService.getTotalCustomers());
   public readonly tableCheckbox = viewChild<ElementRef<HTMLInputElement>>('tableCheckbox');
   private readonly _customers = signal<CustomerTable[] | null>(null);
   public readonly totalCustomers = computed(() => this._totalCustomers());
   public readonly customers = computed(() => this._customers());
+  public readonly isAdmin = computed(() => this.userStoreService.getIsAdmin());
   public readonly customersSelected = output<CustomerTable[] | null>();
   public readonly customerUpdated = output<CustomerTable | null>();
 

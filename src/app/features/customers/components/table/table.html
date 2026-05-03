@@ -53,9 +53,11 @@
                             (click)="btnUpdateCustomer(customer)">
                             Edit
                         </button>
+                        @if (isAdmin()) {
                         <button class="font-medium text-danger hover:underline hover:text-red-500 ms-3 cursor-pointer">
                             Remove
                         </button>
+                        }
                     </td>
                 </tr>
                 }
