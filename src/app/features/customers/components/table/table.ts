@@ -30,31 +30,12 @@ export class Table implements OnInit {
   });
 
   public readonly headerCustomers = [
-    {
-      name: 'Checkbox',
-      key: 'checkbox',
-      showName: false
-    },
-    {
-      name: 'Name',
-      key: 'name',
-      showName: true
-    },
-    {
-      name: 'Email',
-      key: 'email',
-      showName: true
-    },
-    {
-      name: 'Phone',
-      key: 'phone',
-      showName: true
-    },
-    {
-      name: 'Actions',
-      key: 'actions',
-      showName: true
-    }
+    { name: 'Checkbox', key: 'checkbox', showName: false },
+    { name: 'Name', key: 'name', showName: true },
+    { name: 'Email', key: 'email', showName: true },
+    { name: 'Phone', key: 'phone', showName: true },
+    { name: 'Registration Date', key: 'registrationDate', showName: true },
+    { name: 'Actions', key: 'actions', showName: true }
   ];
 
   constructor() {
