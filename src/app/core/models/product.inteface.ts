@@ -5,3 +5,7 @@ export interface Product {
     durationService: string;
     price: string;
 };
+
+export interface ProductTable extends Product {
+    checkbox: boolean,
+}

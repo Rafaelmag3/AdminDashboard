@@ -8,5 +8,6 @@ export const ICONS = {
     SERVICES: 'icon-[carbon--cloud-logging]',
     CUSTOMERS: 'icon-[garden--customer-lists-fill-26]',
     LOGOUT: 'icon-[material-symbols--logout]',
-    USER: 'icon-[iconamoon--profile-fill]'
+    USER: 'icon-[iconamoon--profile-fill]',
+    PRODUCTS: 'icon-[mdi--package-variant]'
 };

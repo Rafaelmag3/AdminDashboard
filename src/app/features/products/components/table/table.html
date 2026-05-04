@@ -1,0 +1,70 @@
+<div class="flex flex-col gap-4">
+    <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base ">
+        <table class="w-full text-sm text-left rtl:text-right text-body">
+            <thead class="text-sm text-heading bg-gray-200 border-b border-default-medium">
+                <tr>
+                    <th scope="col" class="p-4">
+                        <div class="flex items-center">
+                            <input id="table-checkbox" type="checkbox" #tableCheckbox (click)="checkAllProducts($event)"
+                                value="" class="w-4 h-4">
+                            <label for="table-checkbox" class="sr-only">Table checkbox</label>
+                        </div>
+                    </th>
+                    @for (head of headerProducts; track $index) {
+                    @if (head.showName) {
+                    <th scope="col" class="px-6 py-3 font-medium uppercase">
+                        {{ head.name }}
+                    </th>
+                    }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (product of products(); track product.idService) {
+                <tr class="bg-neutral-primary-soft border-b border-gray-200 hover:bg-gray-100">
+                    <th scope="col" class="p-4">
+                        <div class="flex items-center">
+                            <input id="table-checkbox" type="checkbox" [value]="product" [checked]="product.checkbox"
+                                class="w-4 h-4" (click)="selectProducts(product)">
+                            <label for="table-checkbox" class="sr-only">Table checkbox</label>
+                        </div>
+                    </th>
+                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+                        <div class="flex items-center gap-2">
+                            <div class="bg-blue-100 text-blue-500 rounded-full p-2 flex items-center justify-center">
+                                <span class="icon-[mdi--package-variant]"></span>
+                            </div>
+                            <p>
+                                {{ product.typeService }}
+                            </p>
+                        </div>
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ product.description }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ product.price | currency}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ product.durationService }}
+                    </td>
+                    <td class="flex items-center px-6 py-4">
+                        <button class="font-medium text-fg-brand hover:underline hover:text-blue-500 cursor-pointer"
+                            (click)="btnUpdateProduct(product)">
+                            Edit
+                        </button>
+                        @if (isAdmin()) {
+                        <button class="font-medium text-danger hover:underline hover:text-red-500 ms-3 cursor-pointer">
+                            Remove
+                        </button>
+                        }
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <pagination [currentPage]="pagination().page" [totalPages]="pagination().totalPages" [total]="pagination().total"
+        [limit]="pagination().limit" [hasNext]="pagination().hasNext" [hasPrev]="pagination().hasPrev"
+        (pageChange)="onPageChange($event)" />
+</div>

@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { GenericResponse } from '@core/models/generic-response.interface';
 import { PageChangeEvent } from '@core/models/pagination.inteface';
 import { Product } from '@core/models/product.inteface';
@@ -10,6 +10,7 @@ import { environment } from '@env/environment';
 })
 export class ProductService {
   private readonly apiService = inject(ApiService);
+  public dataUpdateProduct = signal<Product | null>(null);
 
   public getProducts(pagination?: PageChangeEvent) {
     return this.apiService.post<GenericResponse<Product[] | null>>(environment.API_URL.SERVICES.GET_PRODUCTS_URL, {

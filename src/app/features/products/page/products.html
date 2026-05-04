@@ -1,0 +1,24 @@
+<div class="flex flex-col gap-4">
+    <div class="flex gap-1">
+        <h1 class="text-gray-500">
+            Total Products:
+        </h1>
+        <p class="font-bold">
+            {{ totalProducts() }}
+        </p>
+    </div>
+    <div class="flex gap-4">
+        <button class="flex items-center gap-1 bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
+            (click)="btnNewProduct()">
+            <span class="icon-[mi--add]"></span>
+            Add Product
+        </button>
+        <button class="flex items-center gap-1 text-white px-4 py-2 rounded-md cursor-pointer"
+            [disabled]="isDisabledDelete()" [class]="isDisabledDelete() ? 'bg-gray-400' : 'bg-red-500'">
+            <span class="icon-[mi--delete]"></span>
+            Delete Product
+        </button>
+    </div>
+    <product-table (productsSelected)="handleSelectedProducts($event)"
+        (productsUpdated)="handleUpdateProduct($event)" />
+</div>

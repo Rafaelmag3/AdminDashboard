@@ -29,7 +29,7 @@ export const routes: Routes = [
             },
             {
                 path: PATH_CONSTANTS.CUSTOMERS,
-                data: { name: 'Customers', showInMenu: true, icon: ICONS.DASHBOARD },
+                data: { name: 'Customers', showInMenu: true, icon: ICONS.CUSTOMERS },
                 children: [
                     {
                         path: PATH_CONSTANTS.ROOT,
@@ -41,6 +41,18 @@ export const routes: Routes = [
                         path: PATH_CONSTANTS.FORM,
                         data: { name: 'New Customer', showInMenu: false },
                         loadComponent: () => import('@features/customers/components/form/form').then(m => m.Form)
+                    }
+                ]
+            },
+            {
+                path: PATH_CONSTANTS.PRODUCTS,
+                data: { name: 'Products', showInMenu: true, icon: ICONS.PRODUCTS },
+                children: [
+                    {
+                        path: PATH_CONSTANTS.ROOT,
+                        canActivate: [authGuard],
+                        data: { name: 'Products', showInMenu: true, icon: ICONS.PRODUCTS },
+                        loadComponent: () => import('@features/products/page/products').then(m => m.Products)
                     }
                 ]
             }
