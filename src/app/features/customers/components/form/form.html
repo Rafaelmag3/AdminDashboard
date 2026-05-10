@@ -54,10 +54,11 @@
         <div class="grid grid-rows md:grid-cols-6 gap-4">
             <button
                 class="order-2 md:order-0 col-span-1 md:col-start-3 btn--secondary border rounded px-2 py-4 cursor-pointer"
-                type="button" (click)="btnCancelForm()">
+                type="button" (click)="btnCancelForm()" [disabled]="disabledButton()">
                 Cancel
             </button>
-            <button class="order-1 md:order-0 col-span-1 btn--primary" type="submit">
+            <button class="order-1 md:order-0 col-span-1" [disabled]="disabledButton()"
+                [class]="disabledButton() ? 'bg-gray-400' : 'btn--primary'" type="submit">
                 Save
             </button>
         </div>

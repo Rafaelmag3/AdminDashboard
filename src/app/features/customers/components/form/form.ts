@@ -22,6 +22,7 @@ export class Form implements OnInit {
   public readonly messageAlert = signal<string>('');
   public readonly typeAlert = signal<TypeAlert>('danger');
   public readonly showAlert = signal<boolean>(false);
+  public readonly disabledButton = signal<boolean>(false);
   public readonly formValidationConstants = FormValidationConstants;
   private readonly customerFormModel = signal<NewCustomer>({
     name: '',
@@ -87,6 +88,7 @@ export class Form implements OnInit {
       next: (response) => {
         if (response === null) {
           this.operationSuccess('Customer created successfully');
+          this.disabledButton.set(true);
           return;
         }
         this.errorOperation('Customer creation failed');
@@ -112,6 +114,7 @@ export class Form implements OnInit {
       next: (response) => {
         if (response === null) {
           this.operationSuccess('Customer updated successfully');
+          this.disabledButton.set(true);
           return;
         }
         this.errorOperation('Customer updated failed');
